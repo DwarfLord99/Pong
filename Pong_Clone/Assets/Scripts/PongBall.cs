@@ -1,20 +1,18 @@
-using UnityEditor.U2D.Sprites;
 using UnityEngine;
 
 public class PongBall : MonoBehaviour
 {
     private Rigidbody2D rb;
 
-    private float speed = 5.0f;
+    private float speed;
     private float yDirection = 0.0f;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        speed = RandomStartSpeed();
     }
 
-    // Update is called once per frame
     void Update()
     {
         rb.linearVelocity = new Vector2(speed, yDirection);
@@ -36,7 +34,7 @@ public class PongBall : MonoBehaviour
             Debug.Log("Collision detected with: " + collision.collider.name);
             speed = -speed; // reverse the speed to change direction
             // reverse the ball's direction on collision
-            Vector2 newDirection = new Vector2(-speed, 0.0f);
+            Vector2 newDirection = new Vector2(-speed, RandomYDirection());
             rb.linearVelocity = newDirection;
         }
     }
@@ -45,5 +43,11 @@ public class PongBall : MonoBehaviour
     {
         yDirection = Random.Range(-2.0f, 2.0f);
         return yDirection;
+    }
+
+    float RandomStartSpeed()
+    {
+        // Pick a random speed of either 5.0f or -5.0f
+        return Random.Range(0, 2) == 0 ? 5.0f : -5.0f;
     }
 }
