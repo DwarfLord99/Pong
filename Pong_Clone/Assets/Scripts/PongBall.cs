@@ -45,6 +45,7 @@ public class PongBall : MonoBehaviour
         if(collision.gameObject.CompareTag("DeadZone"))
         {
             // Increase the score once the ball enters the dead zone
+            GameManager.instance.ScoreUpdate(1);
 
             // Destroy the ball
             Destroy(gameObject);

@@ -2,7 +2,12 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    static GameManager instance;
+    public static GameManager instance;
+
+    // This variable will hold the score
+    [SerializeField] ScoreManager scoreManager;
+
+    private int score = 0;
 
     void Start()
     {
@@ -20,5 +25,19 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void ScoreUpdate(int Amount)
+    {
+        score += Amount;
+        Debug.Log("Score Updated to " + score);
+        if (scoreManager != null)
+        {
+            scoreManager.UpdateScore(score);
+        }
+        else
+        {
+            Debug.LogWarning("ScoreManager is not assigned in GameManager.");
+        }
     }
 }
