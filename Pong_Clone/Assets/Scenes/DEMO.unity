@@ -701,9 +701,13 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3551686174722633938, guid: 698153e671823c84fb1c26dc3e87dd16, type: 3}
-      propertyPath: speed
-      value: 10
-      objectReference: {fileID: 0}
+      propertyPath: maxPos
+      value: 
+      objectReference: {fileID: 1719818203}
+    - target: {fileID: 3551686174722633938, guid: 698153e671823c84fb1c26dc3e87dd16, type: 3}
+      propertyPath: minPos
+      value: 
+      objectReference: {fileID: 1632491122}
     - target: {fileID: 8369928004931546788, guid: 698153e671823c84fb1c26dc3e87dd16, type: 3}
       propertyPath: m_Name
       value: ENEMY

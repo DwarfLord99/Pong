@@ -11,38 +11,49 @@ public class PongBall : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         speed = RandomStartSpeed();
+        rb.linearVelocity = new Vector2(speed, yDirection);
     }
 
     void Update()
     {
-        rb.linearVelocity = new Vector2(speed, yDirection);
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.collider != null)
+        if (collision.gameObject.GetComponent<Paddle>())
         {
-            // Increase ball speed based on the current speed
-            if (speed > 0 && speed < 25.0f)
+            // Increase ball speed
+            if (Mathf.Abs(speed) < 25.0f)
             {
-                speed += 0.5f;
+                speed += speed > 0 ? 0.5f : -0.5f; // Maintain direction while increasing speed
             }
-            else if(speed < 0 && speed > -25.0f)
-            {
-                speed -= 0.5f;
-            }
-            Debug.Log("Collision detected with: " + collision.collider.name);
+
             speed = -speed; // reverse the speed to change direction
+
+            ChangeYDirection(collision);
+
             // reverse the ball's direction on collision
-            Vector2 newDirection = new Vector2(-speed, RandomYDirection());
-            rb.linearVelocity = newDirection;
+            //Vector2 newDirection = new Vector2(rb.linearVelocityX, 0.0f);
+            //rb.linearVelocity = newDirection;
+        }
+        else if (collision.gameObject.CompareTag("Wall"))
+        {
+            // Reverse the ball's direction on wall collision
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, -rb.linearVelocity.y);
         }
     }
 
-    float RandomYDirection()
+    void ChangeYDirection(Collision2D collision)
     {
-        yDirection = Random.Range(-2.0f, 2.0f);
-        return yDirection;
+        Transform paddle = collision.transform;
+
+        float relativeIntersectY = (transform.position.y - paddle.position.y);
+        float normalizedBounce = relativeIntersectY / (paddle.localScale.y / 2.0f);
+
+        // Calculate new Y direction based on hit position
+        Vector2 newVelocity = new Vector2(rb.linearVelocity.x, normalizedBounce * speed);
+        rb.linearVelocity = newVelocity;
     }
 
     float RandomStartSpeed()
