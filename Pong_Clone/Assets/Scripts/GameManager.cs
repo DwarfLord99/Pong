@@ -4,8 +4,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    // This variable will hold the score
     [SerializeField] ScoreManager scoreManager;
+    [SerializeField] GameObject pongBallPrefab;
 
     private int score = 0;
 
@@ -20,11 +20,26 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject); // Ensure only one instance exists
         }
+
+        GameStart();
     }
 
     void Update()
     {
         
+    }
+
+    public void GameStart()
+    {
+        // At start of game, instantiate the PongBall
+        if (pongBallPrefab != null)
+        {
+            Instantiate(pongBallPrefab, Vector2.zero, Quaternion.identity);
+        }
+        else
+        {
+            Debug.LogError("PongBall prefab is not assigned in GameManager.");
+        }
     }
 
     public void ScoreUpdate(int Amount)

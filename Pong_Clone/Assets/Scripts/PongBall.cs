@@ -14,11 +14,6 @@ public class PongBall : MonoBehaviour
         rb.linearVelocity = new Vector2(speed, yDirection);
     }
 
-    void Update()
-    {
-        
-    }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.GetComponent<Paddle>())
@@ -49,6 +44,9 @@ public class PongBall : MonoBehaviour
 
             // Destroy the ball
             Destroy(gameObject);
+
+            // Respawn the ball
+            RespawnBall();
         }
     }
 
@@ -70,5 +68,10 @@ public class PongBall : MonoBehaviour
     {
         // Pick a random speed of either 5.0f or -5.0f
         return Random.Range(0, 2) == 0 ? 5.0f : -5.0f;
+    }
+
+    void RespawnBall()
+    {
+        GameManager.instance.GameStart();
     }
 }
