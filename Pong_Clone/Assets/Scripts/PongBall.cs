@@ -32,15 +32,22 @@ public class PongBall : MonoBehaviour
             speed = -speed; // reverse the speed to change direction
 
             ChangeYDirection(collision);
-
-            // reverse the ball's direction on collision
-            //Vector2 newDirection = new Vector2(rb.linearVelocityX, 0.0f);
-            //rb.linearVelocity = newDirection;
         }
-        else if (collision.gameObject.CompareTag("Wall"))
+
+        if (collision.gameObject.CompareTag("Wall"))
         {
-            // Reverse the ball's direction on wall collision
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, -rb.linearVelocity.y);
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, Mathf.Sign(rb.linearVelocity.y) * rb.linearVelocity.magnitude);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("DeadZone"))
+        {
+            // Increase the score once the ball enters the dead zone
+
+            // Destroy the ball
+            Destroy(gameObject);
         }
     }
 
@@ -51,8 +58,10 @@ public class PongBall : MonoBehaviour
         float relativeIntersectY = (transform.position.y - paddle.position.y);
         float normalizedBounce = relativeIntersectY / (paddle.localScale.y / 2.0f);
 
+        yDirection = normalizedBounce;
+
         // Calculate new Y direction based on hit position
-        Vector2 newVelocity = new Vector2(rb.linearVelocity.x, normalizedBounce * speed);
+        Vector2 newVelocity = new Vector2(rb.linearVelocity.x, yDirection * speed);
         rb.linearVelocity = newVelocity;
     }
 
