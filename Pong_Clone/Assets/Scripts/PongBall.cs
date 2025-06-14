@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PongBall : MonoBehaviour
@@ -42,11 +43,11 @@ public class PongBall : MonoBehaviour
             // Increase the score once the ball enters the dead zone
             GameManager.instance.ScoreUpdate(1);
 
-            // Destroy the ball
-            Destroy(gameObject);
+            // Trigger respawn of the ball
+            GameManager.instance.RespawnPongBall();
 
-            // Respawn the ball
-            RespawnBall();
+            // Destroy the current ball instance
+            Destroy(gameObject);
         }
     }
 
@@ -60,18 +61,12 @@ public class PongBall : MonoBehaviour
         yDirection = normalizedBounce;
 
         // Calculate new Y direction based on hit position
-        Vector2 newVelocity = new Vector2(rb.linearVelocity.x, yDirection * speed);
-        rb.linearVelocity = newVelocity;
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, yDirection * speed);
     }
 
     float RandomStartSpeed()
     {
         // Pick a random speed of either 5.0f or -5.0f
         return Random.Range(0, 2) == 0 ? 5.0f : -5.0f;
-    }
-
-    void RespawnBall()
-    {
-        GameManager.instance.GameStart();
     }
 }

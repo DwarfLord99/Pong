@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -9,7 +10,7 @@ public class GameManager : MonoBehaviour
 
     private int score = 0;
 
-    void Start()
+    void Awake()
     {
         if(instance == null)
         {
@@ -24,11 +25,6 @@ public class GameManager : MonoBehaviour
         GameStart();
     }
 
-    void Update()
-    {
-        
-    }
-
     public void GameStart()
     {
         // At start of game, instantiate the PongBall
@@ -40,6 +36,17 @@ public class GameManager : MonoBehaviour
         {
             Debug.LogError("PongBall prefab is not assigned in GameManager.");
         }
+    }
+
+    IEnumerator WaitForRespawn()
+    {
+        yield return new WaitForSeconds(1.0f); // Wait for 1 second before respawning
+        GameStart();
+    }
+
+    public void RespawnPongBall()
+    {
+        StartCoroutine(WaitForRespawn());
     }
 
     public void ScoreUpdate(int Amount)
