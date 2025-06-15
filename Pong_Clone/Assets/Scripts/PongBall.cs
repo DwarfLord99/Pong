@@ -5,7 +5,7 @@ public class PongBall : MonoBehaviour
 {
     private Rigidbody2D rb;
 
-    private float speed;
+    [SerializeField] float speed = 5.0f;
     private float yDirection = 0.0f;
 
     void Start()
@@ -27,12 +27,16 @@ public class PongBall : MonoBehaviour
 
             speed = -speed; // reverse the speed to change direction
 
+            // Update the ball's velocity
+            rb.linearVelocity = new Vector2(speed, rb.linearVelocity.y);
+
             ChangeYDirection(collision);
         }
 
         if (collision.gameObject.CompareTag("Wall"))
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, Mathf.Sign(rb.linearVelocity.y) * rb.linearVelocity.magnitude);
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, 
+                Mathf.Sign(rb.linearVelocity.y) * (rb.linearVelocity.magnitude / 1.5f));
         }
     }
 
@@ -67,6 +71,6 @@ public class PongBall : MonoBehaviour
     float RandomStartSpeed()
     {
         // Pick a random speed of either 5.0f or -5.0f
-        return Random.Range(0, 2) == 0 ? 5.0f : -5.0f;
+        return Random.Range(0, 2) == 0 ? speed : -speed;
     }
 }
