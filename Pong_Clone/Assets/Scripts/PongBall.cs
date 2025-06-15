@@ -36,7 +36,7 @@ public class PongBall : MonoBehaviour
         if (collision.gameObject.CompareTag("Wall"))
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, 
-                Mathf.Sign(rb.linearVelocity.y) * (rb.linearVelocity.magnitude / 1.5f));
+                Mathf.Sign(rb.linearVelocity.y) * (rb.linearVelocity.magnitude / 2.0f));
         }
     }
 
