@@ -42,10 +42,13 @@ public class PongBall : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("DeadZone"))
+        if(collision.gameObject.CompareTag("DeadZone_Left") || collision.gameObject.CompareTag("DeadZone_Right"))
         {
-            // Increase the score once the ball enters the dead zone
-            GameManager.instance.ScoreUpdate(1);
+            if(collision.gameObject.CompareTag("DeadZone_Right"))
+            {
+                // Increase the score once the ball enters the dead zone
+                GameManager.instance.ScoreUpdate(1);
+            }            
 
             // Trigger respawn of the ball
             GameManager.instance.RespawnPongBall();
