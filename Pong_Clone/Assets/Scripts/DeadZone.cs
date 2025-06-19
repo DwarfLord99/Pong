@@ -4,6 +4,9 @@ using UnityEngine;
 public class DeadZone : MonoBehaviour
 {
     [SerializeField] GameObject sprite;
+
+    [SerializeField] HealthManager healthManager;
+
     [SerializeField] float shakeDuration = 0.5f;
     [SerializeField] float shakeStrength = 1.0f;
 
@@ -14,11 +17,15 @@ public class DeadZone : MonoBehaviour
             // Check if the ball entered the left or right dead zone
             if (gameObject.CompareTag("DeadZone_Left"))
             {
+                // Player
+                healthManager.TakeDamage(1); // Reduce player health by 1
                 StartCoroutine(HitEffect());
                 StartCoroutine(ShakeEffect(shakeDuration, shakeStrength));
             }
             else if (gameObject.CompareTag("DeadZone_Right"))
             {
+                // Enemy
+                healthManager.EnemyTakeDamage(1); // Reduce enemy health by 1
                 StartCoroutine(HitEffect());
                 StartCoroutine(ShakeEffect(shakeDuration, shakeStrength));
             }            

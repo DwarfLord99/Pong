@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 1f2940a21855cab4c90900a19cce1f17
+guid: 8666075e80bdd0548b87e3a172f2d9af
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3857540776283367787
-    second: HP Hearts_0
+      213: -7139073515420660294
+    second: HP Hearts 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -139,10 +139,10 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5969b032a13477ac0800000000000000
-      internalID: -3857540776283367787
+      spriteID: 26915809342eb9d4ba57d8d25174a76e
+      internalID: 1242804963
       vertices: []
       indices: 
       edges: []
@@ -163,8 +163,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cf38366a57b12004a99c651d54269a26
-      internalID: 508868534
+      spriteID: 853ee6726c270db449fddbc04bcc3753
+      internalID: 1514774846
       vertices: []
       indices: 
       edges: []
@@ -185,8 +185,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cd66241ae875e324e9af5d54ad9f8eb6
-      internalID: 478152334
+      spriteID: 0ca757dd7567dad45ae69969e8d75f5c
+      internalID: -2012616520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HP Hearts_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 613c3285464168947a5f3596ccf96fc5
+      internalID: -1106128419
       vertices: []
       indices: 
       edges: []
@@ -195,7 +217,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: d0e615dcdd58d5c459b60b2b9c0d4c8a
+    spriteID: a720d2422534dc947b6241d7a1b8a6e1
     internalID: 0
     vertices: []
     indices: 
@@ -205,9 +227,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      HP Hearts_0: -3857540776283367787
-      HP Hearts_1: 508868534
-      HP Hearts_2: 478152334
+      HP Hearts_0: 1242804963
+      HP Hearts_1: 1514774846
+      HP Hearts_2: -2012616520
+      HP Hearts_3: -1106128419
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -6,6 +6,7 @@ public class PongBall : MonoBehaviour
     private Rigidbody2D rb;
 
     [SerializeField] float speed = 5.0f;
+
     private float yDirection = 0.0f;
 
     void Start()
@@ -48,7 +49,7 @@ public class PongBall : MonoBehaviour
             {
                 // Increase the score once the ball enters the dead zone
                 GameManager.instance.ScoreUpdate(1);
-            }            
+            }
 
             // Trigger respawn of the ball
             GameManager.instance.RespawnPongBall();
